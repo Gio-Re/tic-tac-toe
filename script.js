@@ -36,6 +36,7 @@ const controlFlow = (function() {
   let roundNumber = 1;
 
   const getRoundNumber = () => roundNumber;
+  
   const nextRound = () => {
     const winStatus = verifyWinner();
     if (winStatus == true) {
@@ -44,8 +45,16 @@ const controlFlow = (function() {
       return roundNumber += 1;
     }
   };
+
+  const newGame = () => {
+    gameboard.resetBoard();
+    player.setPlayerOneName('');
+    player.setPlayerTwoName('');
+    roundNumber = 1;
+  }
+
   
-  return {getRoundNumber, nextRound};
+  return {getRoundNumber, nextRound, newGame};
 
 })();
 
@@ -55,9 +64,8 @@ const player = (function() {
   let playerTwo = { name: '', symbol: 'O',};
 
   const setPlayerOneName = (user_name) => playerOne.name = user_name;   
-  const setPlayerTwoName = (user_name) => playerTwo.name = user_name;   
-
-
+  const setPlayerTwoName = (user_name) => playerTwo.name = user_name;
+  
   const currentPlayer = () => {
     let round = controlFlow.getRoundNumber();
     if (round % 2 == 0) {
