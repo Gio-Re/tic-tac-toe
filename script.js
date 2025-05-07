@@ -6,22 +6,30 @@ const gameboard = (function() {
   for (i = 0; i < columns; i++) {
     board[i] = [];
     for (let j = 0; j < rows; j++) {
-      board[i].push(null);  
+      board[i].push(i+j);  
     };
   };
 
   const getBoard = () => board;
 
   const upDateCell = (player, column, row) => {
-    if (board[column][row] == null) {
+    if (board[column][row] != 'X' && board[column][row] != 'O') {
       board[column][row] = player.symbol;
       console.log(board);
       controlFlow.nextRound();
     };
   };
   
+  const resetBoard = () => {
+    for (i = 0; i < columns; i++) {
+      board[i] = [];
+      for (let j = 0; j < rows; j++) {
+        board[i].push(i+j);  
+      };
+    };
+  }
 
-  return {getBoard, upDateCell};
+  return {getBoard, upDateCell, resetBoard};
 })();
 
 const controlFlow = (function() {
