@@ -53,7 +53,10 @@ const player = (function() {
 
   let playerOne = { name: '', symbol: 'X',};
   let playerTwo = { name: '', symbol: 'O',};
- 
+
+  const setPlayerOneName = (user_name) => playerOne.name = user_name;   
+  const setPlayerTwoName = (user_name) => playerTwo.name = user_name;   
+
 
   const currentPlayer = () => {
     let round = controlFlow.getRoundNumber();
@@ -65,7 +68,7 @@ const player = (function() {
   };
   
 
-  return {currentPlayer};
+  return {currentPlayer, setPlayerOneName, setPlayerTwoName};
 })();
 
 function verifyWinner() {
@@ -80,5 +83,5 @@ function verifyWinner() {
     (board[0][0] == board[1][1] && board[1][1] == board [2][2]) ||
     (board[0][2] == board[1][1] && board[1][1] == board [2][0])) {
     return true;
-  }
-}
+  };
+};
