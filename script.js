@@ -1,3 +1,5 @@
+//Basic Logic
+
 const gameboard = (function() {
 
   const rows = 3;
@@ -95,3 +97,25 @@ function verifyWinner() {
     return true;
   };
 };
+
+//change name
+
+const playerOneName = document.querySelector('#player1name');
+const playerOneBtn = document.querySelector('#player1btn');
+
+playerOneBtn.addEventListener('click', () => {
+  let nameOne = prompt('Scegli il nome del Giocatore 1', 'Giocatore 1');
+  player.setPlayerOneName(nameOne);
+  playerOneName.textContent = nameOne;
+});
+
+const playerTwoName = document.querySelector('#player2name');
+const playerTwoBtn = document.querySelector('#player2btn');
+
+playerTwoBtn.addEventListener('click', () => {
+  let nameTwo = prompt('Scegli il nome del Giocatore 2', 'Giocatore 2');
+  player.setPlayerTwoName(nameTwo);
+  playerTwoName.textContent = nameTwo;
+});
+
+

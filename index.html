@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="./script.js"></script>
+		<script src="./script.js" defer></script>
+		<link rel="stylesheet" href="./style.css">
     <title>Tic Tac Toe</title>
   </head>
   <body>
-
+		<div class="header">
+			<div class="player1">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title>
+					<path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" />
+				</svg>
+				<h2 id="player1name">Giocatore 1</h2>
+				<button id="player1btn">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil-outline</title>
+						<path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6
+						20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
+					</svg>
+				</button>
+			</div>
+			<div class="title"><h1>Tic Tac Toe</h1></div>
+			<div class="player2">
+				<h2 id="player2name">Giocatore 2</h2>
+				<button id="player2btn">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil-outline</title>
+						<path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65
+						21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
+					</svg>
+				</button>
+			</div>
+		</div>
+		<div class="main-container"></div>
+		<div class="footer"></div>
 	</body>
 </html>
