@@ -23,13 +23,16 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0px;
+    height: 100vh;
 }
 
 .header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(255, 135, 135);
+    /* height: 15vh; */
+    background-color: rgb(252, 134, 80);
+    flex: auto;
 }
 
 .player1,
@@ -52,4 +55,59 @@ body {
 .header svg {
     width: 1.5em;
     fill: var(--text-color);
+}
+
+svg.playerlogo1 {
+    width: 2.5em;
+    fill: black;
+}
+
+svg.playerlogo2 {
+    width: 2.5em;
+    fill: red;
+}
+
+.main-container {
+    /* height: 70vh; */
+    background-color: rgb(240, 182, 135);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+}
+
+#board {
+    height: 50vh;
+    width: 50vh;
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    margin: 6% auto;
+}
+
+.cell {
+    /* border: 2px solid black; */
+    background-color: antiquewhite;
+}
+
+
+.footer {
+    background-color: rgb(252, 134, 80);
+    /* height: 15vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+}
+
+#restart {
+    font-family: inherit;
+    font-size: 2em;
+    border-radius: 1em;
+    padding: .5em 1em;
+    background-color: rgb(243, 228, 191);
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
 }
