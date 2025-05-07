@@ -6,7 +6,7 @@ const gameboard = (function() {
   for (i = 0; i < columns; i++) {
     board[i] = [];
     for (let j = 0; j < rows; j++) {
-      board[i].push(i+j);  
+      board[i].push(`cell ${i}.${j}`);  
     };
   };
 
@@ -24,7 +24,7 @@ const gameboard = (function() {
     for (i = 0; i < columns; i++) {
       board[i] = [];
       for (let j = 0; j < rows; j++) {
-        board[i].push(i+j);  
+        board[i].push(`cell ${i}.${j}`);  
       };
     };
   }
