@@ -41,6 +41,8 @@ const controlFlow = (function() {
     const winStatus = verifyWinner();
     if (winStatus == true) {
       console.log(player.currentPlayer());
+    } else if (roundNumber == 9) {
+      console.log('Ties');
     } else {
       return roundNumber += 1;
     }
@@ -51,7 +53,7 @@ const controlFlow = (function() {
     player.setPlayerOneName('');
     player.setPlayerTwoName('');
     roundNumber = 1;
-  }
+  };
 
   
   return {getRoundNumber, nextRound, newGame};
