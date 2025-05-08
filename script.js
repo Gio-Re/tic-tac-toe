@@ -266,6 +266,10 @@ function restart() {
   const winner = document.querySelector('.winner');
   winner.textContent = '';
   controlFlow.newGame(); // istanza per resetboard() azzera il round ed i nomi dei giocatori
+  const playerOneName = document.querySelector('#player1name');
+  playerOneName.textContent = player.playerOne.name;
+  const playerTwoName = document.querySelector('#player2name');
+  playerTwoName.textContent = player.playerTwo.name;
   game();
 };
 
