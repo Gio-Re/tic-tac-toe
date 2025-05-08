@@ -36,6 +36,7 @@ const gameboard = (function() {
 
 const controlFlow = (function() {
   let roundNumber = 1;
+  let gameOver = false;
 
   const getRoundNumber = () => roundNumber;
   
@@ -43,9 +44,11 @@ const controlFlow = (function() {
     const winStatus = verifyWinner();
     if (winStatus == true) {
       console.log(player.currentPlayer());
+      gameOver = true;
       displayWin();
     } else if (roundNumber == 9) {
       console.log('Tie');
+      gameOver = true;
       gameTie();
     } else {
       return roundNumber += 1;
@@ -60,7 +63,7 @@ const controlFlow = (function() {
   };
 
   
-  return {getRoundNumber, nextRound, newGame};
+  return {getRoundNumber, nextRound, newGame, gameOver};
 
 })();
 
@@ -96,6 +99,7 @@ function verifyWinner() {
     (board[0][0] == board[0][1] && board[0][1] == board [0][2]) ||
     (board[0][0] == board[1][1] && board[1][1] == board [2][2]) ||
     (board[0][2] == board[1][1] && board[1][1] == board [2][0])) {
+    controlFlow.gameOver = true;
     return true;
   };
 };
@@ -123,7 +127,8 @@ playerTwoBtn.addEventListener('click', () => {
 //display game
 
 function game() {
-  const cells = document.querySelectorAll('.cell');
+  if (controlFlow.gameOver == false) {
+    const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
     cell.addEventListener('click', () => {
       let cellId = cell.getAttribute('id');
@@ -133,13 +138,13 @@ function game() {
       // console.log(cellRow);
       putPlayerSymbol(cell);
       gameboard.upDateCell(player.currentPlayer(), cellColumn, cellRow);
-
-  }, {once:true});
-});
+    }, {once:true});
+    });
+  };
 };
 
 function putPlayerSymbol(cell) {
-  if (player.currentPlayer() == player.playerOne) {
+  if (player.currentPlayer() == player.playerOne && controlFlow.gameOver == false) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
     svg.setAttribute('viewBox', '0 0 24 24');
@@ -148,7 +153,7 @@ function putPlayerSymbol(cell) {
     path.setAttribute('d', 'M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z');
     svg.appendChild(path);
     cell.appendChild(svg);
-  } else if (player.currentPlayer() == player.playerTwo) {
+  } else if (player.currentPlayer() == player.playerTwo && controlFlow.gameOver == false) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
     svg.setAttribute('viewBox', '0 0 24 24');
@@ -270,6 +275,7 @@ function restart() {
   playerOneName.textContent = player.playerOne.name;
   const playerTwoName = document.querySelector('#player2name');
   playerTwoName.textContent = player.playerTwo.name;
+  controlFlow.gameOver = false;
   game();
 };
 
