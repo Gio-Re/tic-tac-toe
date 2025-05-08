@@ -43,6 +43,7 @@ const controlFlow = (function() {
     const winStatus = verifyWinner();
     if (winStatus == true) {
       console.log(player.currentPlayer());
+      displayWin();
     } else if (roundNumber == 9) {
       console.log('Ties');
     } else {
@@ -52,8 +53,8 @@ const controlFlow = (function() {
 
   const newGame = () => {
     gameboard.resetBoard();
-    player.setPlayerOneName('');
-    player.setPlayerTwoName('');
+    player.setPlayerOneName('Giocatore 1');
+    player.setPlayerTwoName('Giocatore 2');
     roundNumber = 1;
   };
 
@@ -64,8 +65,8 @@ const controlFlow = (function() {
 
 const player = (function() {
 
-  let playerOne = { name: '', symbol: 'X',};
-  let playerTwo = { name: '', symbol: 'O',};
+  let playerOne = { name: 'Giocatore 1', symbol: 'X',};
+  let playerTwo = { name: 'Giocatore 2', symbol: 'O',};
 
   const setPlayerOneName = (user_name) => playerOne.name = user_name;   
   const setPlayerTwoName = (user_name) => playerTwo.name = user_name;
@@ -120,19 +121,21 @@ playerTwoBtn.addEventListener('click', () => {
 
 //display game
 
-const cells = document.querySelectorAll('.cell');
-cells.forEach(cell => {
-  cell.addEventListener('click', (event) => {
-    let cellId = cell.getAttribute('id');
-    let cellColumn = parseInt(cellId[4]);
-    let cellRow = parseInt(cellId[6]);
-    console.log(cellColumn);
-    console.log(cellRow);
-    putPlayerSymbol(cell);
-    gameboard.upDateCell(player.currentPlayer(), cellColumn, cellRow);
+function game() {
+  const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+      let cellId = cell.getAttribute('id');
+      let cellColumn = parseInt(cellId[4]);
+      let cellRow = parseInt(cellId[6]);
+      // console.log(cellColumn);
+      // console.log(cellRow);
+      putPlayerSymbol(cell);
+      gameboard.upDateCell(player.currentPlayer(), cellColumn, cellRow);
 
-  })
+  }, {once:true});
 });
+};
 
 function putPlayerSymbol(cell) {
   if (player.currentPlayer() == player.playerOne) {
@@ -154,5 +157,104 @@ function putPlayerSymbol(cell) {
     path.setAttribute('d', 'M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z');
     svg.appendChild(path);
     cell.appendChild(svg);
-  }
-}
+  };
+};
+
+function displayWin() {
+  
+  const win = document.querySelector('.win');
+  win.textContent = 'WIN!';
+  win.setAttribute('style', 'font-size: 4em; text-align: center');
+  const winner = document.querySelector('.winner');
+  winner.textContent = player.currentPlayer().name;
+  winner.setAttribute('style', 'font-size: 3em; text-align: center');
+  
+  //coloro la riga vincente
+  const board = gameboard.getBoard();
+  console.log(board);
+  if (board[0][0] == board[0][1] && board[0][1] == board [0][2]){
+    const cell1 = document.querySelector('#cell0-0');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell0-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell0-2');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[1][0] == board[1][1] && board[1][1] == board [1][2]){
+    const cell1 = document.querySelector('#cell1-0');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell1-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell1-2');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[2][0] == board[2][1] && board[2][1] == board [2][2]){
+    const cell1 = document.querySelector('#cell2-0');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell2-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell2-2');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[0][0] == board[1][0] && board[1][0] == board [2][0]){
+    const cell1 = document.querySelector('#cell0-0');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell1-0');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell2-0');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[0][1] == board[1][1] && board[1][1] == board [2][1]) {
+    const cell1 = document.querySelector('#cell0-1');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell1-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell2-1');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[0][2] == board[1][2] && board[1][2] == board [2][2]) {
+    const cell1 = document.querySelector('#cell0-2');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell1-2');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell2-2');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[0][0] == board[0][1] && board[0][1] == board [0][2]) {
+    const cell1 = document.querySelector('#cell0-0');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell0-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell0-2');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[0][0] == board[1][1] && board[1][1] == board [2][2]) {
+    const cell1 = document.querySelector('#cell0-0');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell1-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell2-2');
+    cell3.setAttribute('style', 'background-color: yellow');
+  } else if (board[0][2] == board[1][1] && board[1][1] == board [2][0]) {
+    const cell1 = document.querySelector('#cell0-2');
+    cell1.setAttribute('style', 'background-color: yellow');
+    const cell2 = document.querySelector('#cell1-1');
+    cell2.setAttribute('style', 'background-color: yellow');
+    const cell3 = document.querySelector('#cell2-0');
+    cell3.setAttribute('style', 'background-color: yellow');
+  };
+};
+
+//button to restart
+
+const restartBtn = document.querySelector('#restart');
+restartBtn.addEventListener('click', restart);
+
+function restart() { 
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach((cell) => {
+    cell.setAttribute('style', 'background-color: antiquewhite');
+    cell.replaceWith(cell.cloneNode(false));
+  });
+  const win = document.querySelector('.win');
+  win.textContent = '';
+  const winner = document.querySelector('.winner');
+  winner.textContent = '';
+  controlFlow.newGame(); // istanza per resetboard() azzera il round ed i nomi dei giocatori
+  game();
+};
+
+game();

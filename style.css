@@ -31,7 +31,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgb(252, 134, 80);
-    flex: auto;
+    flex: 1;
     gap: 5em;
 }
 
@@ -70,9 +70,11 @@ svg.playerlogo2 {
 .main-container {
     /* height: 70vh; */
     background-color: rgb(240, 182, 135);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
     align-items: center;
+    gap: 2em;
     flex: auto;
 }
 
@@ -84,7 +86,7 @@ svg.playerlogo2 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 5px;
-    margin: 6% auto;
+    margin: 6% 0;
 }
 
 .cell {
@@ -100,9 +102,10 @@ svg.playerlogo2 {
     background-color: rgb(252, 134, 80);
     /* height: 15vh; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: auto;
+    flex: 1;
 }
 
 #restart {
@@ -113,4 +116,5 @@ svg.playerlogo2 {
     background-color: rgb(243, 228, 191);
     border: 1px solid var(--text-color);
     color: var(--text-color);
+    margin: .5em 0px;
 }
