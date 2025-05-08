@@ -80,7 +80,7 @@ const player = (function() {
   };
   
 
-  return {currentPlayer, setPlayerOneName, setPlayerTwoName};
+  return {currentPlayer, setPlayerOneName, setPlayerTwoName, playerOne, playerTwo};
 })();
 
 function verifyWinner() {
@@ -118,4 +118,41 @@ playerTwoBtn.addEventListener('click', () => {
   playerTwoName.textContent = nameTwo;
 });
 
+//display game
 
+const cells = document.querySelectorAll('.cell');
+cells.forEach(cell => {
+  cell.addEventListener('click', (event) => {
+    let cellId = cell.getAttribute('id');
+    let cellColumn = parseInt(cellId[4]);
+    let cellRow = parseInt(cellId[6]);
+    console.log(cellColumn);
+    console.log(cellRow);
+    putPlayerSymbol(cell);
+    gameboard.upDateCell(player.currentPlayer(), cellColumn, cellRow);
+
+  })
+});
+
+function putPlayerSymbol(cell) {
+  if (player.currentPlayer() == player.playerOne) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '9em');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z');
+    svg.appendChild(path);
+    cell.appendChild(svg);
+  } else if (player.currentPlayer() == player.playerTwo) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '9em');
+    svg.setAttribute('fill', 'red');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z');
+    svg.appendChild(path);
+    cell.appendChild(svg);
+  }
+}

@@ -28,11 +28,11 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    /* height: 15vh; */
     background-color: rgb(252, 134, 80);
     flex: auto;
+    gap: 5em;
 }
 
 .player1,
@@ -90,6 +90,9 @@ svg.playerlogo2 {
 .cell {
     /* border: 2px solid black; */
     background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
