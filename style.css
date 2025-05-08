@@ -12,7 +12,7 @@
 
 h1 {
     font-size: 3rem;
-    color: var(--text-color);
+    color: rgb(165, 28, 28);
 }
 
 h2 {
@@ -78,6 +78,12 @@ svg.playerlogo2 {
     flex: auto;
 }
 
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #board {
     height: 50vh;
     width: 50vh;
@@ -85,6 +91,8 @@ svg.playerlogo2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    /* align-items: center;
+    justify-content: center; */
     gap: 5px;
     margin: 6% 0;
 }
@@ -117,4 +125,8 @@ svg.playerlogo2 {
     border: 1px solid var(--text-color);
     color: var(--text-color);
     margin: .5em 0px;
+}
+
+button:hover {
+    box-shadow: 0 0 .5em .2em orangered;
 }

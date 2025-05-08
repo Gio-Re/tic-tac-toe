@@ -45,7 +45,8 @@ const controlFlow = (function() {
       console.log(player.currentPlayer());
       displayWin();
     } else if (roundNumber == 9) {
-      console.log('Ties');
+      console.log('Tie');
+      gameTie();
     } else {
       return roundNumber += 1;
     }
@@ -237,6 +238,17 @@ function displayWin() {
     cell3.setAttribute('style', 'background-color: yellow');
   };
 };
+
+function gameTie() {
+  
+  const win = document.querySelector('.win');
+  win.textContent = 'Tie!';
+  win.setAttribute('style', 'font-size: 4em; text-align: center');
+  const winner = document.querySelector('.winner');
+  winner.textContent = 'Tie!';
+  winner.setAttribute('style', 'font-size: 4em; text-align: center');
+
+}
 
 //button to restart
 
